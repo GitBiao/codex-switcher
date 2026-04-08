@@ -1,0 +1,110 @@
+# Codex Model Switcher
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org)
+[![macOS](https://img.shields.io/badge/Platform-macOS-lightgrey.svg)](https://www.apple.com/macos)
+
+**中文** | [English](README_EN.md)
+
+macOS 菜单栏工具，用于在 [Codex Desktop](https://openai.com/index/introducing-codex/) 中一键切换 [OpenRouter](https://openrouter.ai/) 多模型配置。
+
+## 背景
+
+Codex Desktop 使用自定义 Provider（如 OpenRouter）时，主界面不显示模型选择器。每次切换模型需要手动编辑 `~/.codex/config.toml` 并重启应用。本工具将这一流程封装为菜单栏一键操作。
+
+## 截图
+
+<table>
+  <tr>
+    <td align="center"><b>菜单栏主界面</b></td>
+    <td align="center"><b>切换到 GPT-4o</b></td>
+    <td align="center"><b>切换到 Sonnet 4.6</b></td>
+  </tr>
+  <tr>
+    <td><img src="public/switcher_main.png" width="280"/></td>
+    <td><img src="public/desc_gpt4o.png" width="280"/></td>
+    <td><img src="public/desc_sonnet4.6.png" width="280"/></td>
+  </tr>
+</table>
+
+## 快速开始
+
+**1. 克隆并安装**
+
+```bash
+git clone https://github.com/GitBiao/codex-switcher.git
+cd codex-switcher
+pip3 install -r requirements.txt
+```
+
+**2. 设置环境变量**
+
+```bash
+export OPENROUTER_API_KEY="sk-or-..."
+```
+
+**3. 启动**
+
+```bash
+# 方式一：直接运行
+python3 -m codex_switcher.app
+
+# 方式二：一键启动脚本（自动检测依赖）
+./run.sh
+```
+
+## 功能
+
+- **一键切换模型** -- 菜单栏选择目标模型，自动更新配置并重启 Codex
+- **Reasoning Effort 调节** -- 支持 low / medium / high / xhigh 四档
+- **快速编辑** -- 直接打开模型配置或 config.toml
+- **开机自启** -- 支持 macOS LaunchAgent 自动启动
+
+## 目录结构
+
+```
+codex-switcher/
+├── codex_switcher/              # 核心 Python 包
+│   ├── __init__.py
+│   ├── app.py                   # 菜单栏应用主入口
+│   ├── config_manager.py        # config.toml 读写
+│   ├── models.py                # 模型配置管理
+│   ├── process_manager.py       # Codex 进程生命周期管理
+│   └── switcher_config.json     # 模型预设配置
+├── docs/                        # 项目文档
+│   ├── installation.md / installation_en.md
+│   ├── usage.md / usage_en.md
+│   ├── configuration.md / configuration_en.md
+│   └── autostart.md / autostart_en.md
+├── public/                      # 截图资源
+│   ├── desc_gpt4o.png           # 切换到 GPT-4o 截图
+│   ├── desc_sonnet4.6.png       # 切换到 Sonnet 4.6 截图
+│   └── switcher_main.png        # 菜单栏主界面截图
+├── LICENSE                      # Apache License 2.0
+├── README.md / README_EN.md     # 项目说明（中文 / English）
+├── requirements.txt             # Python 依赖
+└── run.sh                       # 一键启动脚本
+```
+
+## 文档
+
+| 文档 | 说明 |
+|------|------|
+| [安装指南](docs/installation.md) | 环境要求、依赖安装、环境变量配置 |
+| [使用说明](docs/usage.md) | 启动方式、菜单操作、模型切换 |
+| [配置详解](docs/configuration.md) | switcher_config.json 与 config.toml 字段说明 |
+| [开机自启动](docs/autostart.md) | macOS LaunchAgent 配置方式 |
+
+## 前提条件
+
+1. macOS 系统，Python 3.10+
+2. 已安装 [Codex Desktop](https://openai.com/index/introducing-codex/)（`/Applications/Codex.app`）
+3. 已设置 `OPENROUTER_API_KEY` 环境变量
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=GitBiao/codex-switcher&type=Date)](https://star-history.com/#GitBiao/codex-switcher&Date)
+
+## License
+
+本项目基于 [Apache License 2.0](LICENSE) 开源。
