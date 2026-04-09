@@ -8,6 +8,9 @@ python3 -m codex_switcher.app
 
 # Option B: use the launcher script (auto-detects and installs deps)
 ./run.sh
+
+# Option C: use the built .app (requires make app first)
+open "dist/Codex Switcher.app"
 ```
 
 After launching, the current model's short name (e.g. `sonnet-4.6`) appears in the macOS menubar.
@@ -19,9 +22,9 @@ Click the menubar icon to see the following options:
 | Menu Item | Description |
 |-----------|-------------|
 | **Current: ...** | Shows the full name of the active model |
-| **Model list** | All available models; the active one has a checkmark |
+| **Model list** | All enabled models; the active one has a checkmark |
 | **Reasoning Effort** | Submenu with `low` / `medium` / `high` / `xhigh` |
-| **Edit Models...** | Opens `switcher_config.json` to edit model presets |
+| **Dashboard** | Opens the Dashboard panel for visual model and provider management |
 | **Open config.toml** | Opens the Codex config file directly |
 | **Quit** | Exits the Switcher |
 
@@ -43,3 +46,14 @@ Use the **Reasoning Effort** submenu to change inference intensity without resta
 - `medium` -- balanced speed and quality
 - `high` -- default, suitable for most scenarios
 - `xhigh` -- highest quality, suitable for complex reasoning
+
+## Dashboard
+
+Click **Dashboard** in the menu to open a native configuration window with the following capabilities:
+
+- **Model management** -- add, edit, and delete models
+- **Enable/disable** -- toggle whether a model appears in the menubar
+- **Provider settings** -- modify the provider's Key, Name, Base URL, and Env Key
+- **Default Reasoning Effort** -- select the default reasoning intensity
+
+Changes made in the Dashboard are written to `switcher_config.json` immediately. The menubar checks for config changes every second and refreshes automatically.

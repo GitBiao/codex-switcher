@@ -20,6 +20,7 @@ Dependencies:
 |---------|---------|
 | [rumps](https://github.com/jaredks/rumps) | macOS menubar application framework |
 | [tomlkit](https://github.com/sdispater/tomlkit) | Format-preserving TOML read/write |
+| [pywebview](https://github.com/nicegui-org/pywebview) | Native window for the Dashboard |
 
 ## Set Environment Variable
 
@@ -34,7 +35,19 @@ It is recommended to add the above line to `~/.zshrc` or `~/.bashrc` for persist
 ## Verify Installation
 
 ```bash
-python3 -c "import rumps, tomlkit; print('OK')"
+python3 -c "import rumps, tomlkit, webview; print('OK')"
 ```
 
 If it prints `OK`, the dependencies are installed correctly.
+
+## Build macOS .app (Optional)
+
+To package Codex Switcher as a standalone macOS application:
+
+```bash
+make app
+```
+
+The output is located at `dist/Codex Switcher.app` and can be dragged into `/Applications`.
+
+> **Tip**: `py2app` is installed automatically during the build. Run `make clean` to remove build artifacts.

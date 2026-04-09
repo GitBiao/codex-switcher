@@ -15,12 +15,12 @@
     "env_key": "OPENROUTER_API_KEY"
   },
   "models": [
-    { "id": "anthropic/claude-sonnet-4.6", "short_name": "sonnet-4.6" },
-    { "id": "anthropic/claude-opus-4.6",   "short_name": "opus-4.6" },
-    { "id": "openai/gpt-5.4",             "short_name": "gpt-5.4" },
-    { "id": "openai/gpt-5.3-codex",       "short_name": "5.3-codex" },
-    { "id": "openai/gpt-4o-mini",          "short_name": "4o-mini" },
-    { "id": "deepseek/deepseek-v3.2",      "short_name": "ds-v3.2" }
+    { "id": "anthropic/claude-sonnet-4.6", "short_name": "sonnet-4.6", "enabled": true },
+    { "id": "anthropic/claude-opus-4.6",   "short_name": "opus-4.6",   "enabled": true },
+    { "id": "openai/gpt-5.4",             "short_name": "gpt-5.4",    "enabled": true },
+    { "id": "openai/gpt-5.3-codex",       "short_name": "5.3-codex",  "enabled": true },
+    { "id": "openai/gpt-4o-mini",          "short_name": "4o-mini",    "enabled": false },
+    { "id": "deepseek/deepseek-v3.2",      "short_name": "ds-v3.2",   "enabled": true }
   ],
   "default_reasoning_effort": "high"
 }
@@ -45,6 +45,7 @@
 |------|------|------|
 | `id` | string | 模型完整标识（如 `anthropic/claude-sonnet-4.6`） |
 | `short_name` | string | 菜单栏显示的简称（如 `sonnet-4.6`） |
+| `enabled` | boolean | 是否启用，`false` 时不出现在菜单栏（默认 `true`） |
 
 #### default_reasoning_effort
 
@@ -54,7 +55,7 @@
 
 在 `models` 数组中添加新条目即可。支持 [OpenRouter 上的所有模型](https://openrouter.ai/models)。
 
-也可以在运行时通过菜单的 **Edit Models...** 直接打开编辑。
+也可以通过菜单的 **Dashboard** 打开配置面板，可视化管理模型（添加、编辑、删除、启用/禁用）。
 
 ## config.toml
 

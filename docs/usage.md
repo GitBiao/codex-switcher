@@ -8,6 +8,9 @@ python3 -m codex_switcher.app
 
 # 方式二：使用启动脚本（自动检测并安装依赖）
 ./run.sh
+
+# 方式三：使用构建好的 .app（需先 make app）
+open "dist/Codex Switcher.app"
 ```
 
 启动后，macOS 菜单栏会出现当前模型的简称（如 `sonnet-4.6`）。
@@ -19,9 +22,9 @@ python3 -m codex_switcher.app
 | 菜单项 | 说明 |
 |--------|------|
 | **Current: ...** | 显示当前使用的模型全名 |
-| **模型列表** | 所有可切换的模型，当前模型前有 checkmark |
+| **模型列表** | 所有已启用的模型，当前模型前有 checkmark |
 | **Reasoning Effort** | 子菜单，可选 `low` / `medium` / `high` / `xhigh` |
-| **Edit Models...** | 打开 `switcher_config.json` 编辑模型预设 |
+| **Dashboard** | 打开 Dashboard 配置面板，可视化管理模型和 Provider |
 | **Open config.toml** | 直接编辑 Codex 配置文件 |
 | **Quit** | 退出 Switcher |
 
@@ -43,3 +46,14 @@ python3 -m codex_switcher.app
 - `medium` -- 平衡速度与质量
 - `high` -- 默认值，适合大多数场景
 - `xhigh` -- 最高质量，适合复杂推理
+
+## Dashboard 配置面板
+
+点击菜单中的 **Dashboard** 可打开原生配置窗口，支持以下操作：
+
+- **模型管理** -- 添加、编辑、删除模型
+- **启用/禁用** -- 通过开关控制模型是否出现在菜单栏
+- **Provider 配置** -- 修改 Provider 的 Key、Name、Base URL、Env Key
+- **Default Reasoning Effort** -- 选择默认推理强度
+
+Dashboard 的修改会实时写入 `switcher_config.json`，菜单栏每秒检测配置变化并自动刷新。

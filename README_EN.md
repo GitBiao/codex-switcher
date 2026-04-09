@@ -1,8 +1,8 @@
 # Codex Model Switcher
 
-[License](LICENSE)
-[Python](https://www.python.org)
-[macOS](https://www.apple.com/macos)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org)
+[![macOS](https://img.shields.io/badge/Platform-macOS-lightgrey.svg)](https://www.apple.com/macos)
 
 [中文](README.md) | **English**
 
@@ -14,12 +14,18 @@ When Codex Desktop uses a custom provider (e.g. OpenRouter), its main UI does no
 
 ## Screenshots
 
-
-|             |                      |                          |
-| ----------- | -------------------- | ------------------------ |
-| **Menubar** | **Switch to GPT-4o** | **Switch to Sonnet 4.6** |
-|             |                      |                          |
-
+<table>
+  <tr>
+    <td align="center"><b>Menubar</b></td>
+    <td align="center"><b>Switch to GPT-4o</b></td>
+    <td align="center"><b>Switch to Sonnet 4.6</b></td>
+  </tr>
+  <tr>
+    <td><img src="public/switcher_main.png" width="280"/></td>
+    <td><img src="public/desc_gpt4o.png" width="280"/></td>
+    <td><img src="public/desc_sonnet4.6.png" width="280"/></td>
+  </tr>
+</table>
 
 ## Quick Start
 
@@ -47,11 +53,21 @@ python3 -m codex_switcher.app
 ./run.sh
 ```
 
+**4. Build macOS .app (optional)**
+
+```bash
+make app
+# Output: dist/Codex Switcher.app
+```
+
 ## Features
 
 - **One-click model switching** -- pick a model from the menubar, config is updated and Codex restarts automatically
 - **Reasoning Effort control** -- choose from low / medium / high / xhigh
-- **Quick edit** -- open the model presets or config.toml directly
+- **Dashboard** -- native pywebview window for visual management of models, provider, and default parameters
+- **Model enable/disable** -- disabled models are hidden from the menubar; toggle anytime in the Dashboard
+- **macOS .app bundle** -- build a standalone app via py2app, double-click to run
+- **Quick edit** -- open config.toml directly to edit the Codex configuration
 - **Auto-start** -- supports macOS LaunchAgent for login startup
 
 ## Project Structure
@@ -59,9 +75,10 @@ python3 -m codex_switcher.app
 ```
 codex-switcher/
 ├── codex_switcher/              # Core Python package
-│   ├── __init__.py
+│   ├── __init__.py              # Version (__version__)
 │   ├── app.py                   # Menubar app entry point
 │   ├── config_manager.py        # config.toml read/write
+│   ├── dashboard.py             # Dashboard panel (pywebview)
 │   ├── models.py                # Model preset management
 │   ├── process_manager.py       # Codex process lifecycle
 │   └── switcher_config.json     # Model preset config
@@ -71,9 +88,15 @@ codex-switcher/
 │   ├── configuration.md / configuration_en.md
 │   └── autostart.md / autostart_en.md
 ├── public/                      # Screenshots
-│   ├── desc_gpt4o.png           # GPT-4o switch screenshot
-│   ├── desc_sonnet4.6.png       # Sonnet 4.6 switch screenshot
-│   └── switcher_main.png        # Menubar screenshot
+│   ├── desc_gpt4o.png
+│   ├── desc_sonnet4.6.png
+│   └── switcher_main.png
+├── resources/                   # App resources
+│   ├── icon.icns                # macOS app icon
+│   └── icon_1024.png            # Hi-res icon source
+├── main.py                      # py2app entry point
+├── setup.py                     # py2app build config
+├── Makefile                     # Build commands (make app / make clean)
 ├── LICENSE                      # Apache License 2.0
 ├── README.md                    # Documentation (Chinese)
 ├── README_EN.md                 # Documentation (English)
@@ -83,14 +106,12 @@ codex-switcher/
 
 ## Documentation
 
-
-| Document                                  | Description                                           |
-| ----------------------------------------- | ----------------------------------------------------- |
-| [Installation](docs/installation_en.md)   | Requirements, dependency setup, environment variables |
-| [Usage](docs/usage_en.md)                 | Launch methods, menu operations, model switching      |
-| [Configuration](docs/configuration_en.md) | switcher_config.json & config.toml reference          |
-| [Auto-start](docs/autostart_en.md)        | macOS LaunchAgent setup                               |
-
+| Document | Description |
+|----------|-------------|
+| [Installation](docs/installation_en.md) | Requirements, dependency setup, environment variables, .app build |
+| [Usage](docs/usage_en.md) | Launch methods, menu operations, Dashboard, model switching |
+| [Configuration](docs/configuration_en.md) | switcher_config.json & config.toml reference |
+| [Auto-start](docs/autostart_en.md) | macOS LaunchAgent setup |
 
 ## Prerequisites
 
@@ -106,7 +127,7 @@ codex-switcher/
 
 ## Star History
 
-[Star History Chart](https://star-history.com/#GitBiao/codex-switcher&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=GitBiao/codex-switcher&type=Date)](https://star-history.com/#GitBiao/codex-switcher&Date)
 
 ## License
 

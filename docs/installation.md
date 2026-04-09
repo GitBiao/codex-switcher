@@ -20,6 +20,7 @@ pip3 install -r requirements.txt
 |------|------|
 | [rumps](https://github.com/jaredks/rumps) | macOS 菜单栏应用框架 |
 | [tomlkit](https://github.com/sdispater/tomlkit) | 保留格式的 TOML 读写 |
+| [pywebview](https://github.com/nicegui-org/pywebview) | Dashboard 原生窗口 |
 
 ## 配置环境变量
 
@@ -34,7 +35,19 @@ export OPENROUTER_API_KEY="sk-or-..."
 ## 验证安装
 
 ```bash
-python3 -c "import rumps, tomlkit; print('OK')"
+python3 -c "import rumps, tomlkit, webview; print('OK')"
 ```
 
 输出 `OK` 即表示依赖安装成功。
+
+## 构建 macOS .app（可选）
+
+如果希望将 Codex Switcher 打包为独立的 macOS 应用：
+
+```bash
+make app
+```
+
+构建产物位于 `dist/Codex Switcher.app`，可拖入 `/Applications` 目录使用。
+
+> **提示**: 构建前会自动安装 `py2app`。如需清理构建产物，运行 `make clean`。
