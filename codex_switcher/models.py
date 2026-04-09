@@ -38,6 +38,12 @@ def save_switcher_config(data: dict[str, Any], path: str | Path | None = None) -
 
 
 def get_models(config: dict[str, Any]) -> list[dict[str, str]]:
+    """Return only enabled models (for menubar display)."""
+    return [m for m in config.get("models", []) if m.get("enabled", True)]
+
+
+def get_all_models(config: dict[str, Any]) -> list[dict[str, str]]:
+    """Return all models including disabled ones (for dashboard)."""
     return config.get("models", [])
 
 

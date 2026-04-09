@@ -1,8 +1,8 @@
 # Codex Model Switcher
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org)
-[![macOS](https://img.shields.io/badge/Platform-macOS-lightgrey.svg)](https://www.apple.com/macos)
+[License](LICENSE)
+[Python](https://www.python.org)
+[macOS](https://www.apple.com/macos)
 
 **中文** | [English](README_EN.md)
 
@@ -14,18 +14,12 @@ Codex Desktop 使用自定义 Provider（如 OpenRouter）时，主界面不显�
 
 ## 截图
 
-<table>
-  <tr>
-    <td align="center"><b>菜单栏主界面</b></td>
-    <td align="center"><b>切换到 GPT-4o</b></td>
-    <td align="center"><b>切换到 Sonnet 4.6</b></td>
-  </tr>
-  <tr>
-    <td><img src="public/switcher_main.png" width="280"/></td>
-    <td><img src="public/desc_gpt4o.png" width="280"/></td>
-    <td><img src="public/desc_sonnet4.6.png" width="280"/></td>
-  </tr>
-</table>
+
+|            |                |                    |
+| ---------- | -------------- | ------------------ |
+| **菜单栏主界面** | **切换到 GPT-4o** | **切换到 Sonnet 4.6** |
+|            |                |                    |
+
 
 ## 快速开始
 
@@ -88,12 +82,14 @@ codex-switcher/
 
 ## 文档
 
-| 文档 | 说明 |
-|------|------|
-| [安装指南](docs/installation.md) | 环境要求、依赖安装、环境变量配置 |
-| [使用说明](docs/usage.md) | 启动方式、菜单操作、模型切换 |
+
+| 文档                            | 说明                                      |
+| ----------------------------- | --------------------------------------- |
+| [安装指南](docs/installation.md)  | 环境要求、依赖安装、环境变量配置                        |
+| [使用说明](docs/usage.md)         | 启动方式、菜单操作、模型切换                          |
 | [配置详解](docs/configuration.md) | switcher_config.json 与 config.toml 字段说明 |
-| [开机自启动](docs/autostart.md) | macOS LaunchAgent 配置方式 |
+| [开机自启动](docs/autostart.md)    | macOS LaunchAgent 配置方式                  |
+
 
 ## 前提条件
 
@@ -109,7 +105,7 @@ codex-switcher/
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=GitBiao/codex-switcher&type=Date)](https://star-history.com/#GitBiao/codex-switcher&Date)
+[Star History Chart](https://star-history.com/#GitBiao/codex-switcher&Date)
 
 ## License
 

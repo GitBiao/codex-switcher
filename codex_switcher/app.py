@@ -14,7 +14,9 @@
 
 """Codex Model Switcher -- macOS menubar app for switching OpenRouter models in Codex Desktop."""
 
+import os
 import subprocess
+import sys
 import threading
 
 import rumps
@@ -41,6 +43,7 @@ class CodexSwitcherApp(rumps.App):
         self.switcher_cfg = load_switcher_config()
         self.provider = get_provider(self.switcher_cfg)
         self.model_list = get_models(self.switcher_cfg)
+        self._config_mtime = self._get_config_mtime()
 
         codex_doc = read_config()
         current_model = get_current_model(codex_doc)
@@ -51,6 +54,9 @@ class CodexSwitcherApp(rumps.App):
         self.title = short
 
         self._build_menu(current_model, current_effort)
+
+        self._config_watcher = rumps.Timer(self._check_config_change, 1)
+        self._config_watcher.start()
 
     def _short_name(self, model_id: str | None) -> str:
         if not model_id:
@@ -87,7 +93,7 @@ class CodexSwitcherApp(rumps.App):
 
         self.menu.add(rumps.separator)
 
-        self.menu.add(rumps.MenuItem("Edit Models...", callback=self._on_edit_models))
+        self.menu.add(rumps.MenuItem("Dashboard", callback=self._on_dashboard))
         self.menu.add(rumps.MenuItem("Open config.toml", callback=self._on_open_config))
         self.menu.add(rumps.separator)
         self.menu.add(rumps.MenuItem("Quit", callback=rumps.quit_application))
@@ -130,9 +136,14 @@ class CodexSwitcherApp(rumps.App):
         except Exception as e:
             rumps.notification("Codex Switcher", "Error", str(e))
 
-    def _on_edit_models(self, _sender):
-        from codex_switcher.models import _DEFAULT_CONFIG_PATH
-        subprocess.Popen(["open", str(_DEFAULT_CONFIG_PATH)])
+    def _on_dashboard(self, _sender):
+        if getattr(sys, "frozen", False):
+            app_bundle = os.path.normpath(
+                os.path.join(sys.executable, os.pardir, os.pardir, os.pardir)
+            )
+            subprocess.Popen(["open", "-n", "-a", app_bundle, "--args", "--dashboard"])
+        else:
+            subprocess.Popen([sys.executable, "-m", "codex_switcher.dashboard"])
 
     def _on_open_config(self, _sender):
         from codex_switcher.config_manager import CONFIG_PATH
@@ -146,6 +157,27 @@ class CodexSwitcherApp(rumps.App):
                     return str(key)
         return get_default_reasoning_effort(self.switcher_cfg)
 
+    @staticmethod
+    def _get_config_mtime() -> float:
+        from codex_switcher.models import _DEFAULT_CONFIG_PATH
+
+        try:
+            return _DEFAULT_CONFIG_PATH.stat().st_mtime
+        except OSError:
+            return 0.0
+
+    def _check_config_change(self, _timer):
+        mtime = self._get_config_mtime()
+        if mtime != self._config_mtime:
+            self._config_mtime = mtime
+            self._reload_switcher_config()
+            self._refresh_state()
+
+    def _reload_switcher_config(self):
+        self.switcher_cfg = load_switcher_config()
+        self.provider = get_provider(self.switcher_cfg)
+        self.model_list = get_models(self.switcher_cfg)
+
     def _refresh_state(self):
         doc = read_config()
         current_model = get_current_model(doc)
@@ -154,7 +186,18 @@ class CodexSwitcherApp(rumps.App):
         self._build_menu(current_model, current_effort)
 
 
+def _set_macos_app_name(name: str) -> None:
+    try:
+        from Foundation import NSBundle
+
+        info = NSBundle.mainBundle().infoDictionary()
+        info["CFBundleName"] = name
+    except Exception:
+        pass
+
+
 def main():
+    _set_macos_app_name("Codex Switcher")
     app = CodexSwitcherApp()
     app.run()
 
