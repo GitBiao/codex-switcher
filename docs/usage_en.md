@@ -3,13 +3,16 @@
 ## Launch
 
 ```bash
-# Option A: run the module directly
+# Option A: open the downloaded .app (recommended)
+open "/Applications/Codex Switcher.app"
+
+# Option B: run the module directly (requires source install)
 python3 -m codex_switcher.app
 
-# Option B: use the launcher script (auto-detects and installs deps)
+# Option C: use the launcher script (auto-detects and installs deps)
 ./run.sh
 
-# Option C: use the built .app (requires make app first)
+# Option D: use a self-built .app (requires make app first)
 open "dist/Codex Switcher.app"
 ```
 

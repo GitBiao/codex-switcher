@@ -3,13 +3,16 @@
 ## 启动方式
 
 ```bash
-# 方式一：直接运行模块
+# 方式一：直接打开下载的 .app（推荐）
+open "/Applications/Codex Switcher.app"
+
+# 方式二：直接运行模块（需源码安装）
 python3 -m codex_switcher.app
 
-# 方式二：使用启动脚本（自动检测并安装依赖）
+# 方式三：使用启动脚本（自动检测并安装依赖）
 ./run.sh
 
-# 方式三：使用构建好的 .app（需先 make app）
+# 方式四：使用自行构建的 .app（需先 make app）
 open "dist/Codex Switcher.app"
 ```
 

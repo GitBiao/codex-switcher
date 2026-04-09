@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org)
 [![macOS](https://img.shields.io/badge/Platform-macOS-lightgrey.svg)](https://www.apple.com/macos)
+[![GitHub Release](https://img.shields.io/github/v/release/GitBiao/codex-switcher)](https://github.com/GitBiao/codex-switcher/releases)
 
 [中文](README.md) | **English**
 
@@ -29,6 +30,22 @@ When Codex Desktop uses a custom provider (e.g. OpenRouter), its main UI does no
 
 ## Quick Start
 
+### Option A: Download pre-built app (Recommended)
+
+No Python environment required — download and run:
+
+1. Go to the [Releases page](https://github.com/GitBiao/codex-switcher/releases) and download the latest `Codex.Switcher.app.zip`
+2. Unzip and drag `Codex Switcher.app` into `/Applications`
+3. Set the environment variable (if not already configured):
+   ```bash
+   export OPENROUTER_API_KEY="sk-or-..."
+   ```
+4. Double-click the app — the model switcher appears in the menubar
+
+> **Tip**: On first launch macOS may show "cannot verify the developer". Go to **System Settings → Privacy & Security** and click "Open Anyway".
+
+### Option B: Run from source
+
 **1. Clone & install**
 
 ```bash
@@ -46,10 +63,10 @@ export OPENROUTER_API_KEY="sk-or-..."
 **3. Run**
 
 ```bash
-# Option A: run the module directly
+# Run the module directly
 python3 -m codex_switcher.app
 
-# Option B: use the launcher script (auto-installs deps)
+# Or use the launcher script (auto-installs deps)
 ./run.sh
 ```
 
@@ -108,16 +125,17 @@ codex-switcher/
 
 | Document | Description |
 |----------|-------------|
-| [Installation](docs/installation_en.md) | Requirements, dependency setup, environment variables, .app build |
+| [Installation](docs/installation_en.md) | Direct download, source install, environment variables, .app build |
 | [Usage](docs/usage_en.md) | Launch methods, menu operations, Dashboard, model switching |
 | [Configuration](docs/configuration_en.md) | switcher_config.json & config.toml reference |
 | [Auto-start](docs/autostart_en.md) | macOS LaunchAgent setup |
 
 ## Prerequisites
 
-1. macOS with Python 3.10+
+1. macOS
 2. [Codex Desktop](https://openai.com/index/introducing-codex/) installed at `/Applications/Codex.app`
 3. `OPENROUTER_API_KEY` environment variable set ([Get API Key](https://openrouter.ai/keys))
+4. Python 3.10+ only needed when running from source (the pre-built .app requires no Python)
 
 ## Related Links
 
