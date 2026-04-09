@@ -99,7 +99,13 @@ codex-switcher/
 
 1. macOS 系统，Python 3.10+
 2. 已安装 [Codex Desktop](https://openai.com/index/introducing-codex/)（`/Applications/Codex.app`）
-3. 已设置 `OPENROUTER_API_KEY` 环境变量
+3. 已设置 `OPENROUTER_API_KEY` 环境变量（[获取 API Key](https://openrouter.ai/keys)）
+
+## 相关链接
+
+- [OpenRouter Codex CLI 配置指南](https://openrouter.ai/docs/guides/coding-agents/codex-cli) -- OpenRouter 官方文档，介绍如何在 Codex CLI 中配置 OpenRouter 作为 Provider
+- [Codex CLI GitHub](https://github.com/openai/codex) -- Codex CLI 开源仓库
+- [OpenRouter 模型列表](https://openrouter.ai/models) -- 查看所有可用模型及其 ID
 
 ## Star History
 

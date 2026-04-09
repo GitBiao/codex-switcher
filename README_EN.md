@@ -100,7 +100,13 @@ codex-switcher/
 
 1. macOS with Python 3.10+
 2. [Codex Desktop](https://openai.com/index/introducing-codex/) installed at `/Applications/Codex.app`
-3. `OPENROUTER_API_KEY` environment variable set
+3. `OPENROUTER_API_KEY` environment variable set ([Get API Key](https://openrouter.ai/keys))
+
+## Related Links
+
+- [OpenRouter Codex CLI Guide](https://openrouter.ai/docs/guides/coding-agents/codex-cli) -- Official OpenRouter docs on configuring Codex CLI with OpenRouter as a provider
+- [Codex CLI GitHub](https://github.com/openai/codex) -- Codex CLI open-source repository
+- [OpenRouter Models](https://openrouter.ai/models) -- Browse all available models and their IDs
 
 ## Star History
 
